@@ -14,7 +14,7 @@ const Productscreen = ({ match }) => {
       .catch((err) => {
         console.log(err)
       })
-  }, [match.params.id])
+  }, [match])
 
   return (
     <>
