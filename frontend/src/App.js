@@ -5,6 +5,7 @@ import Homescreen from './screens/Homescreen'
 import { BrowserRouter, Route } from 'react-router-dom'
 import Productscreen from './screens/Productscreen'
 import Cartscreen from './screens/Cartscreen'
+import Loginscreen from './screens/Loginscreen'
 function App() {
   return (
     <BrowserRouter>
@@ -13,6 +14,7 @@ function App() {
         <Container>
           <Route path='/' component={Homescreen} exact />
           <Route path='/product/:id' component={Productscreen} />
+          <Route path='/login' component={Loginscreen} />
           <Route path='/cart/:id?' component={Cartscreen} />
         </Container>
       </main>
