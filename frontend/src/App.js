@@ -8,6 +8,7 @@ import Cartscreen from './screens/Cartscreen'
 import Loginscreen from './screens/Loginscreen'
 import Registerscreen from './screens/Registerscreen'
 import Profilescreen from './screens/Profilescreen'
+import Shippingscreen from './screens/Shippingscreen'
 function App() {
   return (
     <BrowserRouter>
@@ -20,6 +21,7 @@ function App() {
           <Route path='/register' component={Registerscreen} />
           <Route path='/profile' component={Profilescreen} />
           <Route path='/cart/:id?' component={Cartscreen} />
+          <Route path='/shipping' component={Shippingscreen} />
         </Container>
       </main>
       <Footer />
