@@ -10,6 +10,7 @@ import Registerscreen from './screens/Registerscreen'
 import Profilescreen from './screens/Profilescreen'
 import Shippingscreen from './screens/Shippingscreen'
 import Paymentscreen from './screens/Paymentscreen'
+import PlaceOrderscreen from './screens/PlaceOrderscreen'
 function App() {
   return (
     <BrowserRouter>
@@ -24,6 +25,7 @@ function App() {
           <Route path='/cart/:id?' component={Cartscreen} />
           <Route path='/shipping' component={Shippingscreen} />
           <Route path='/payment' component={Paymentscreen} />
+          <Route path='/placeorder' component={PlaceOrderscreen} />
         </Container>
       </main>
       <Footer />
