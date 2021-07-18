@@ -15,8 +15,10 @@ const Orderscreen = ({ match }) => {
   const { order, loading, error } = orderDetails
 
   useEffect(() => {
-    dispatch(getOrderDetails(orderId))
-  }, [orderId, dispatch])
+    if (!order || order._id !== orderId) {
+      dispatch(getOrderDetails(orderId))
+    }
+  }, [order, orderId, dispatch])
 
   if (!loading) {
     const addDecimals = (num) => {
@@ -34,10 +36,11 @@ const Orderscreen = ({ match }) => {
     <Message variant='danger'>{error}</Message>
   ) : (
     <>
-      <h1>Order {order._id}</h1>
+      <h1>Order</h1>
       <Row>
         <Col md={8}>
           <ListGroup variant='flush'>
+            <p style={{ textTransform: 'uppercase' }}>Order Id : {order._id}</p>
             <ListGroup.Item>
               <h2 className='ps-0'>Shipping</h2>
               <p>
