@@ -7,7 +7,11 @@ import { Link } from 'react-router-dom'
 import { getOrderDetails, payOrder } from './../actions/orderActions'
 import Loader from './../components/Loader'
 import { PayPalButton } from 'react-paypal-button-v2'
-import { ORDER_PAY_RESET } from '../constants/orderConstants'
+import { CART_RESET_ITEM } from './../constants/cartConstants'
+import {
+  ORDER_CREATE_RESET,
+  ORDER_PAY_RESET,
+} from '../constants/orderConstants'
 
 const Orderscreen = ({ match }) => {
   const orderId = match.params.id
@@ -35,6 +39,8 @@ const Orderscreen = ({ match }) => {
       document.body.appendChild(script)
     }
     if (!order || order._id !== orderId || successPay) {
+      dispatch({ type: ORDER_CREATE_RESET })
+      dispatch({ type: CART_RESET_ITEM })
       dispatch({ type: ORDER_PAY_RESET })
       dispatch(getOrderDetails(orderId))
     } else if (!order.isPaid) {
