@@ -14,6 +14,7 @@ import PlaceOrderscreen from './screens/PlaceOrderscreen'
 import Orderscreen from './screens/Orderscreen'
 import UserListscreen from './screens/UserListscreen'
 import UserEditscreen from './screens/UserEditscreen'
+import ProductListscreen from './screens/ProductListscreen'
 function App() {
   return (
     <BrowserRouter>
@@ -32,6 +33,7 @@ function App() {
           <Route path='/order/:id' component={Orderscreen} />
           <Route path='/admin/userlist' component={UserListscreen} />
           <Route path='/admin/user/:id/edit' component={UserEditscreen} />
+          <Route path='/admin/productlist' component={ProductListscreen} />
         </Container>
       </main>
       <Footer />
