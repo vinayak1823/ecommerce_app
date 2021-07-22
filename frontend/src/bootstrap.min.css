@@ -4299,6 +4299,8 @@ fieldset:disabled .btn {
 .card-img-bottom,
 .card-img-top {
   width: 100%;
+  max-height: 240px;
+  object-fit: cover;
 }
 .card-group > .card {
   margin-bottom: 0.75rem;
