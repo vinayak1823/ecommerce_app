@@ -7,6 +7,7 @@ import Loader from './../components/Loader'
 import FormContainer from '../components/FormContainer'
 import { listproductdetails, updateProduct } from '../actions/productActions'
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants'
+import axios from 'axios'
 
 const ProductEditscreen = ({ match, history }) => {
   const productId = match.params.id
@@ -18,6 +19,7 @@ const ProductEditscreen = ({ match, history }) => {
   const [category, setcategory] = useState('')
   const [countInStock, setcountInStock] = useState(0)
   const [description, setdescription] = useState('')
+  const [uploading, setuploading] = useState(false)
 
   const dispatch = useDispatch()
 
@@ -64,6 +66,27 @@ const ProductEditscreen = ({ match, history }) => {
         description,
       })
     )
+  }
+
+  const uploadFileHandler = async (e) => {
+    const file = e.target.files[0]
+    const fromData = new FormData()
+    fromData.append('image', file)
+    setuploading(true)
+
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+      const { data } = await axios.post('/api/upload', fromData, config)
+      setimage(data)
+      setuploading(false)
+    } catch (err) {
+      console.error(err)
+      setuploading(false)
+    }
   }
 
   return (
@@ -117,6 +140,14 @@ const ProductEditscreen = ({ match, history }) => {
                   setimage(e.target.value)
                 }}
               ></Form.Control>
+
+              <Form.Control
+                type='file'
+                custom
+                onChange={uploadFileHandler}
+                className='form-control my-3'
+              ></Form.Control>
+              {uploading && <Loader />}
             </Form.Group>
 
             <Form.Group controlId='brand' className='mt-3'>
