@@ -5,17 +5,19 @@ import { useDispatch, useSelector } from 'react-redux'
 import { listproducts } from '../actions/productActions'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
+import Paginate from './../components/Paginate'
+
 const Homescreen = ({ match }) => {
   const keyword = match.params.keyword
+  const pageNumber = match.params.pageNumber || 1
 
   const dispatch = useDispatch()
 
   const productList = useSelector((state) => state.productList)
-  const { loading, error, products } = productList
-
+  const { loading, error, products, page, pages } = productList
   useEffect(() => {
-    dispatch(listproducts(keyword))
-  }, [dispatch, keyword])
+    dispatch(listproducts(keyword, pageNumber))
+  }, [dispatch, keyword, pageNumber])
 
   return (
     <>
@@ -25,13 +27,20 @@ const Homescreen = ({ match }) => {
       ) : error ? (
         <Message variant='danger'>{error}</Message>
       ) : (
-        <Row>
-          {products.map((p) => (
-            <Col key={p._id} sm={12} md={6} lg={4} xl={3}>
-              <Product product={p} />
-            </Col>
-          ))}
-        </Row>
+        <>
+          <Row>
+            {products.map((p) => (
+              <Col key={p._id} sm={12} md={6} lg={4} xl={3}>
+                <Product product={p} />
+              </Col>
+            ))}
+          </Row>
+          <Paginate
+            pages={pages}
+            page={page}
+            keyword={keyword ? keyword : ''}
+          />
+        </>
       )}
     </>
   )
