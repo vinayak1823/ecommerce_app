@@ -5,13 +5,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import { listproducts } from '../actions/productActions'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-const Homescreen = () => {
+const Homescreen = ({ match }) => {
+  const keyword = match.params.keyword
+
   const dispatch = useDispatch()
+
   const productList = useSelector((state) => state.productList)
   const { loading, error, products } = productList
+
   useEffect(() => {
-    dispatch(listproducts())
-  }, [dispatch])
+    dispatch(listproducts(keyword))
+  }, [dispatch, keyword])
+
   return (
     <>
       <h1>Lastest Products</h1>
