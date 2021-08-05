@@ -110,7 +110,7 @@ const Productscreen = ({ match, history }) => {
                     <ListGroup.Item>
                       <Row>
                         <Col className='d-flex align-items-center'>
-                          Qunatity :
+                          Quantity :
                         </Col>
                         <Col>
                           <Form.Control
